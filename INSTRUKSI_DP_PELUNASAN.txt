@@ -1,0 +1,46 @@
+INSTRUKSI IMPLEMENTASI DP DAN PELUNASAN
+========================================
+
+1. Jalankan SQL terlebih dahulu:
+   - Buka phpMyAdmin
+   - Pilih database peminjaman kamera
+   - Import atau jalankan file: alter_table_dp_pelunasan.sql
+
+2. Fitur yang sudah ditambahkan:
+
+   A. FORM PENGAJUAN PEMINJAMAN (Peminjam):
+      - Input DP (Down Payment)
+      - Upload bukti transfer DP
+      - Otomatis hitung sisa bayar (Total - DP)
+      - Validasi: DP tidak boleh lebih besar dari total harga
+
+   B. FORM KONFIRMASI PENGEMBALIAN (Petugas):
+      - Input denda kerusakan (opsional)
+      - Input jumlah pelunasan (sisa bayar + denda)
+      - Upload bukti transfer pelunasan
+      - Sistem otomatis hitung: sisa bayar + denda telat + denda kerusakan
+
+   C. TABEL PEMINJAMAN:
+      - Kolom DP
+      - Kolom Sisa Bayar
+      - Kolom Status Pembayaran (badge berwarna):
+        * BELUM DP (merah)
+        * DP DIBAYAR (orange)
+        * LUNAS (hijau)
+
+3. Alur Pembayaran:
+   - Peminjam ajukan peminjaman → bayar DP → status: "dp_dibayar"
+   - Petugas approve → status peminjaman: "disetujui"
+   - Peminjam ajukan pengembalian → status: "menunggu_pengembalian"
+   - Petugas konfirmasi + input pelunasan → jika lunas: status "lunas" + stok kembali
+   - Jika belum lunas: status tetap "dp_dibayar" + menunggu pembayaran
+
+4. File yang diubah:
+   - app/views/peminjaman/index.php
+   - app/controllers/PeminjamanController.php
+   - app/models/Peminjaman.php
+   - alter_table_dp_pelunasan.sql (SQL baru)
+
+5. Folder upload:
+   - Bukti DP dan pelunasan disimpan di: public/bukti/
+   - Format nama file: timestamp_namafile.ext
