@@ -1,0 +1,44 @@
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <div>
+            <h1>👮 Dashboard Petugas</h1>
+            <p>Selamat datang, <?= $_SESSION['user']['nama'] ?? 'Petugas' ?></p>
+        </div>
+        <a href="?url=auth/logout" class="btn-logout">
+            🚪 Logout
+        </a>
+    </div>
+
+    <div class="dashboard-grid">
+        <a href="?url=alat" class="dashboard-card card-blue">
+            <div class="card-icon">📦</div>
+            <h3>Lihat Data Alat</h3>
+            <p>Cek ketersediaan alat</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+        <a href="?url=peminjaman" class="dashboard-card card-green">
+            <div class="card-icon">✅</div>
+            <h3>Kelola Peminjaman</h3>
+            <p>Approve dan konfirmasi peminjaman</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+        <a href="?url=kategori" class="dashboard-card card-purple">
+            <div class="card-icon">🏷️</div>
+            <h3>Lihat Kategori</h3>
+            <p>Daftar kategori alat</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+        <a href="?url=laporan" class="dashboard-card card-blue">
+            <div class="card-icon">📊</div>
+            <h3>Cetak Laporan</h3>
+            <p>Laporan peminjaman, alat, dan denda</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+
+    </div>
+</div>
+</div>
